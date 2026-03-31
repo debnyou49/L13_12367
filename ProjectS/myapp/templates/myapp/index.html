@@ -1,0 +1,109 @@
+{% extends 'myapp/base.html' %}
+{% block content %}
+
+<style>
+  .page-header {
+    background: linear-gradient(135deg, #000000, #e93287, #ed7af1);
+    border-radius: 16px;
+    padding: 30px;
+    margin-bottom: 30px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .page-header h2 { margin: 0; font-size: 1.6rem; font-weight: 700; }
+  .page-header p { margin: 4px 0 0; opacity: 0.85; font-size: 0.9rem; }
+  .btn-add {
+    background: white;
+    color: rgb(253, 76, 179);
+    font-weight: 700;
+    border-radius: 10px;
+    padding: 10px 22px;
+    text-decoration: none;
+    font-size: 0.95rem;
+    white-space: nowrap;
+    transition: transform .2s, box-shadow .2s;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+  .btn-add:hover { transform: translateY(-2px); color: rgb(255, 152, 233); }
+  .table-card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(123,47,247,0.10);
+    overflow: hidden;
+  }
+  .table thead tr {
+    background: linear-gradient(135deg, #e693e6, #ff53cb);
+    color: white;
+  }
+  .table thead th { font-weight: 600; padding: 14px 16px; border: none; font-size: 0.9rem; }
+  .table tbody td, .table tbody th { padding: 13px 16px; vertical-align: middle; border-color: #f0eaff; }
+  .table tbody tr:hover { background-color: #faf5ff; }
+  .badge-id { background: #f0eaff; color: blueviolet; font-weight: 700; padding: 4px 10px; border-radius: 8px; font-size: 0.85rem; }
+  .badge-date { background: #f0fdf4; color: #16a34a; font-size: 0.82rem; padding: 4px 10px; border-radius: 8px; font-weight: 600; }
+  .btn-edit { background: linear-gradient(135deg, #ff6eb4, #ff4fa0); color: white; border: none; border-radius: 8px; padding: 6px 16px; font-size: 0.85rem; font-weight: 600; text-decoration: none; }
+  .btn-edit:hover { opacity: 0.85; color: white; }
+  .btn-del { background: linear-gradient(135deg, #000000, #000000); color: white; border: none; border-radius: 8px; padding: 6px 16px; font-size: 0.85rem; font-weight: 600; text-decoration: none; }
+  .btn-del:hover { opacity: 0.85; color: white; }
+</style>
+
+<!-- HEADER -->
+<div class="page-header">
+  <div>
+    <h2>👥 ข้อมูลประชากร</h2>
+    <p>ระบบจัดการข้อมูลประชากร | ICT12367</p>
+  </div>
+  <a href="/add/" class="btn-add">➕ เพิ่มประชากร</a>
+</div>
+
+<!-- SEARCH FORM -->
+<div class="row mb-3 justify-content-end">
+  <div class="col-md-4">
+    <form action="" method="GET" class="d-flex">
+      <input class="form-control me-2" type="search" name="q" placeholder="ค้นหาชื่อประชากร..."
+             aria-label="Search" value="{{ request.GET.q }}">
+      <button class="btn btn-outline-primary me-2" type="submit">ค้นหา</button>
+      <a href="/" class="btn btn-outline-secondary">ล้างค่า</a>
+    </form>
+  </div>
+</div>
+
+
+<!-- TABLE -->
+<div class="table-card">
+  <table class="table table-hover mb-0">
+    <thead>
+      <tr>
+        <th>รหัส</th>
+        <th>ชื่อประชากร</th>
+        <th>อายุ</th>
+        <th>วันที่เพิ่มข้อมูล</th>
+        <th class="text-center">แก้ไข</th>
+        <th class="text-center">ลบ</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for person in all_person %}
+      <tr>
+        <td><span class="badge-id">{{ person.id }}</span></td>
+        <td><strong>{{ person.name }}</strong></td>
+        <td>{{ person.age }} ปี</td>
+        <td><span class="badge-date">📅 {{ person.created_date }}</span></td>
+        <td class="text-center">
+          <a href="#" class="btn-edit">✏️ แก้ไข</a>
+        </td>
+        <td class="text-center">
+          <a href="#" class="btn-del">🗑️ ลบ</a>
+        </td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="6" class="text-center text-muted">ไม่พบข้อมูลที่คุณค้นหา</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

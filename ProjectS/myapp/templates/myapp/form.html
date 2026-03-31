@@ -1,0 +1,36 @@
+{% extends 'myapp/base.html' %}
+{% block content %}
+
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <div class="card shadow-sm p-4">
+
+      <h2 style="color: rgb(0, 0, 0);" class="text-center mb-1">เพิ่มข้อมูลประชากร</h2>
+      <hr style="border-color: rgb(255, 43, 202); width: 60px; border-width: 2px; margin: 8px auto 24px;">
+
+      <form method="POST" action="#">
+        {% csrf_token %}
+
+        <div class="mb-3">
+          <label class="form-label fw-semibold">ชื่อประชากร</label>
+          <input type="text" name="name" class="form-control" placeholder="กรอกชื่อ" required>
+        </div>
+
+        <div class="mb-4">
+          <label class="form-label fw-semibold">อายุ</label>
+          <input type="number" name="age" class="form-control" placeholder="กรอกอายุ" min="0" required>
+        </div>
+
+        <div class="d-grid gap-2">
+          <button type="submit" class="btn" style="background-color: rgb(252, 44, 217); color: white;">
+            💾 บันทึกข้อมูล
+          </button>
+          <a href="/" class="btn btn-outline-secondary">← ย้อนกลับ</a>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

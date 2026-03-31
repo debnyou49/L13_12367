@@ -1,0 +1,80 @@
+{% extends 'myapp/base.html' %}
+{% block content %}
+
+<h2 style="color: blueviolet;" class="text-center">เกี่ยวกับรายวิชา</h2>
+<p class="text-center text-muted mb-4">ICT12367 — การใช้กรอบงานสำหรับการพัฒนาเว็บแอปพลิเคชันเพื่อความมั่นคงปลอดภัย</p>
+<hr style="border-color: blueviolet; width: 80px; border-width: 2px; margin: 0 auto 30px;">
+
+<!-- CARDS -->
+<div class="row g-4 mb-5">
+  <div class="col-md-4">
+    <div class="card h-100 shadow-sm text-center p-3">
+      <div class="card-body">
+        <div style="font-size:2.2rem;">🛡️</div>
+        <h5 class="card-title mt-2" style="color:blueviolet;">ความปลอดภัย</h5>
+        <p class="card-text text-muted">พัฒนาระบบด้วยมาตรฐานความปลอดภัยสูง ป้องกันการโจมตีทุกรูปแบบ</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card h-100 shadow-sm text-center p-3">
+      <div class="card-body">
+        <div style="font-size:2.2rem;">⚡</div>
+        <h5 class="card-title mt-2" style="color:blueviolet;">ประสิทธิภาพ</h5>
+        <p class="card-text text-muted">เว็บแอปที่ตอบสนองรวดเร็ว รองรับผู้ใช้งานจำนวนมากพร้อมกัน</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card h-100 shadow-sm text-center p-3">
+      <div class="card-body">
+        <div style="font-size:2.2rem;">🎓</div>
+        <h5 class="card-title mt-2" style="color:blueviolet;">การเรียนรู้</h5>
+        <p class="card-text text-muted">มุ่งเน้นให้นักศึกษาเข้าใจหลักการพัฒนาเว็บจริงในภาคปฏิบัติ</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT + FORM -->
+<div class="row g-4">
+  <div class="col-md-6">
+    <h4 style="color:blueviolet;">รายวิชานี้คืออะไร?</h4>
+    <hr style="border-color:blueviolet; width:50px; border-width:2px; margin:8px 0 16px;">
+    <p class="text-muted">รายวิชา ICT12367 มุ่งเน้นการสอนการพัฒนาเว็บแอปพลิเคชันด้วยกรอบงาน Django ซึ่งเป็น Python Web Framework ที่มีความนิยมสูงในระดับสากล</p>
+    <p class="text-muted">นักศึกษาจะได้เรียนรู้การออกแบบ Model การเชื่อมต่อฐานข้อมูล การรับ-ส่งข้อมูลจากแบบฟอร์ม และการรักษาความปลอดภัยของระบบ</p>
+    <p class="text-muted">เปิดสอนโดย คณะเทคโนโลยีสารสนเทศ มหาวิทยาลัยศรีปทุม (SPU SIT)</p>
+    <div class="mt-3 d-flex flex-wrap gap-2">
+      <span class="badge" style="background-color:blueviolet;">Django</span>
+      <span class="badge" style="background-color:blueviolet;">Python</span>
+      <span class="badge" style="background-color:blueviolet;">Bootstrap</span>
+      <span class="badge" style="background-color:blueviolet;">SQLite</span>
+      <span class="badge" style="background-color:blueviolet;">HTML/CSS</span>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="card shadow-sm p-4">
+      <h5 style="color:blueviolet;">📬 ติดต่อเรา</h5>
+      <hr style="border-color:blueviolet;">
+      <form method="POST" action="#">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label class="form-label fw-semibold">ชื่อ - นามสกุล</label>
+          <input type="text" name="name" class="form-control" placeholder="กรอกชื่อของคุณ" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label fw-semibold">อีเมล</label>
+          <input type="email" name="email" class="form-control" placeholder="example@email.com" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label fw-semibold">ข้อความ</label>
+          <textarea name="message" class="form-control" rows="4" placeholder="พิมพ์ข้อความที่ต้องการส่ง..."></textarea>
+        </div>
+        <button type="submit" class="btn w-100" style="background-color:blueviolet; color:white;">ส่งข้อความ ✉️</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
